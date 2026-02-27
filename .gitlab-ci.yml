@@ -1,0 +1,12 @@
+stages:
+  - test
+  - sonar
+
+sonarqube-check:
+  stage: sonar
+  image: sonarsource/sonar-scanner-cli:latest
+  script:
+    - sonar-scanner -Dsonar.qualitygate.wait=true
+  only:
+    - merge_requests
+    - main
